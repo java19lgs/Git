@@ -1,0 +1,37 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+ 
+	<bean id="myFirstBean" class="MyFirstBean" scope="prototype">
+		<property name="name" value="Mykola"/>
+		<property name="count" value="5"/>
+	</bean>
+ <bean id="mySBean" class="MySBean" autowire="autodetect">
+		
+		<constructor-arg name="id" value="6"/>
+		<constructor-arg name="nname" value="Volk"/>
+			<property name="user" ref="user"/>
+			<property name="list">
+				<list>
+					<ref bean="user"/>
+				</list>
+			</property>
+			<property name="set">
+				<set>
+					<ref bean="user"/>
+				</set>
+			</property>
+			<property name="map">
+				<map>
+					<entry key="Value1" value="myValue1"/>
+					<entry key="Value2" value-ref="user"/>
+				</map>
+			</property>
+		
+	</bean>
+	<bean id="user" class="User">
+		<property name="name" value="User property"/>
+		<property name="age" value="35"/>
+	</bean>
+</beans>
